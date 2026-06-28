@@ -18,43 +18,17 @@ public class FavoriteService {
     @Autowired
     private FavoriteRepository repository;
 
-    public Favorite findById(Long id){
+    public Favorite findById(Long id) {
         logger.info("Finding favorite by id!");
 
         return repository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Favorite not found!"));
     }
 
-    public List<Favorite> findAll(){
+    public List<Favorite> findAll() {
         logger.info("Finding all favorites!");
 
         return repository.findAll();
     }
 
-    public Favorite addFavorite(Favorite favorite){
-        logger.info("Adding favorite!");
-
-        return repository.save(favorite);
-    }
-
-    public Favorite updateFavorite(Favorite favorite){
-        logger.info("Updating favorite!");
-
-        Favorite favoriteTest = repository.findById(favorite.getId())
-                .orElseThrow(() -> new NotFoundException("Favorite not found!"));
-
-        favoriteTest.setUser(favorite.getUser());
-        favoriteTest.setTouristSpot(favorite.getTouristSpot());
-
-        return repository.save(favoriteTest);
-    }
-
-    public void deleteFavorite(Long id){
-        logger.info("Deleting favorite!");
-
-        Favorite favoriteTest = repository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Favorite not found!"));
-
-        repository.delete(favoriteTest);
-    }
 }

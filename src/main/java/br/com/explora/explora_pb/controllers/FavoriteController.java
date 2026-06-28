@@ -26,21 +26,4 @@ public class FavoriteController {
         return services.findById(id);
     }
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Favorite createFavorite(@RequestBody Favorite favorite){
-        return services.addFavorite(favorite);
-    }
-
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public Favorite updateFavorite(@RequestBody Favorite favorite){
-        return services.updateFavorite(favorite);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<?> deleteFavorite(@PathVariable("id") Long id){
-
-        services.deleteFavorite(id);
-
-        return ResponseEntity.noContent().build();
-    }
 }

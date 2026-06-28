@@ -61,13 +61,13 @@ public class UserService {
         return repository.save(userTest);
     }
 
-    public User deleteUser(Long id){
+    public void deleteUser(Long id){
 
         logger.info("Deleting user!");
 
         User userTest = repository.findById(id).orElseThrow(() -> new NotFoundException("User not found!"));
 
-        return deleteUser(id);
+        repository.delete(userTest);
     }
 
 }
