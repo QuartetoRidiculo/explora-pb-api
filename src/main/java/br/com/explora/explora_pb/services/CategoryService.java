@@ -45,6 +45,10 @@ public class CategoryService {
 
         categoryTest.setName(category.getName());
 
+        if (categoryTest.getName()==null){
+            throw new IllegalArgumentException("Category name cannot be empty!");
+        }
+
         return repository.save(categoryTest);
     }
 
