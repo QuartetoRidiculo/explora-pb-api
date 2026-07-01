@@ -1,5 +1,6 @@
 package br.com.explora.explora_pb.model;
 
+import br.com.explora.explora_pb.enums.Role;
 import jakarta.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,6 +33,10 @@ public class User implements Serializable, UserDetails {
 
     @Column(nullable = false, length = 255)
     private String password;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Role role = Role.ROLE_USER;
 
     public User(){
     }
@@ -76,6 +81,14 @@ public class User implements Serializable, UserDetails {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
